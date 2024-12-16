@@ -55,7 +55,9 @@ jobs:
       - name: Ubuntu specific
         if: matrix.os == 'ubuntu-latest'
         run: |
-          sudo apt-get update 
+          sudo apt-get update
+          sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+          sudo apt-get install ffmpeg          
           ARCHITECTURE=$(uname -m)
           echo "ARCHITECTURE=$ARCHITECTURE" >> $GITHUB_ENV                  
 
