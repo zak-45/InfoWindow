@@ -55,9 +55,7 @@ jobs:
       - name: Ubuntu specific
         if: matrix.os == 'ubuntu-22.04'
         run: |
-          sudo apt-get update
-          sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
-          sudo apt-get install ffmpeg          
+          sudo apt-get update       
           ARCHITECTURE=$(uname -m)
           echo "ARCHITECTURE=$ARCHITECTURE" >> $GITHUB_ENV                  
 
