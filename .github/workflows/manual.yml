@@ -107,6 +107,7 @@ jobs:
           product-version: ${{github.event.inputs.mytag}}
           file-version: ${{github.event.inputs.mytag}}
           enable-plugins: tk-inter
+          windows-console-mode: disable
           deployment: true
           windows-icon-from-ico: assets/favicon.ico
           macos-app-icon: assets/favicon.ico
@@ -114,7 +115,6 @@ jobs:
           include-data-files: |
             favicon.ico=favicon.ico
             favicon.png=favicon.png
-            splash-screen.png=splash-screen.png
 
       - name: Upload Artifacts Win/Linux
         if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-latest'
