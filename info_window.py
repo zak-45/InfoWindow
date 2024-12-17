@@ -21,7 +21,7 @@ def show_message(message, msg_type: str = ''):
     root.title("WLEDLipSync Information")
     bg_color = 'red' if msg_type == 'error' else '#0E7490'
     root.configure(bg=bg_color)  # Set the background color
-    label = tk.Label(root, text=message, bg=bg_color, fg='white', justify=tk.LEFT, padx=20, pady=20)
+    label = tk.Label(root, text=message, bg=bg_color, fg='white', justify=tk.LEFT, padx=5, pady=5, wraplength='80p')
     label.pack()
 
     # Create an OK button to close the window
@@ -46,3 +46,5 @@ if __name__ == "__main__":
 
     if len(sys.argv) > 2:
         show_message(sys.argv[1], sys.argv[2])
+    else:
+        print('bad args number, need 2')
