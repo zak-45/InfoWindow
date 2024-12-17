@@ -34,8 +34,8 @@ def show_message(message, msg_type: str = ''):
     if sys.platform.lower() == 'win32':
         root.attributes('-toolwindow', True)
     elif sys.platform.lower() == 'linux':
-        root.attributes('-type', 'splash')
-        root.overrideredirect(True)
+        root.attributes('-type', 'desktop')
+        root.overrideredirect(False)
     elif sys.platform.lower() == 'darwin':
         root.attributes('-notify', True)
 
