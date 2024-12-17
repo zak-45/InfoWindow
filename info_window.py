@@ -30,10 +30,12 @@ def show_message(message, msg_type: str = ''):
 
     # Make the window stay on top of other windows
     root.attributes('-topmost', True)
+    root.attributes("-alpha", 0.9)
     if sys.platform.lower() == 'win32':
         root.attributes('-toolwindow', True)
     elif sys.platform.lower() == 'linux':
-        root.attributes('-type', 'notification')
+        root.attributes('-type', 'splash')
+        root.overrideredirect(True)
     elif sys.platform.lower() == 'darwin':
         root.attributes('-notify', True)
 
