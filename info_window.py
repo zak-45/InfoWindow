@@ -30,7 +30,6 @@ def show_message(message, msg_type: str = ''):
 
     # Make the window stay on top of other windows
     root.attributes('-topmost', True)
-    root.attributes("-alpha", 0.5)
     if sys.platform.lower() == 'win32':
         root.attributes('-toolwindow', True)
     elif sys.platform.lower() == 'linux':
@@ -38,6 +37,7 @@ def show_message(message, msg_type: str = ''):
         root.overrideredirect(False)
     elif sys.platform.lower() == 'darwin':
         root.attributes('-notify', True)
+        root.attributes('-type', 'dialog')
 
     # Start the Tkinter event loop
     root.mainloop()
