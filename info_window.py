@@ -47,4 +47,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         show_message(sys.argv[1], sys.argv[2])
     else:
-        print('bad args number, need 2')
+        show_message('bad args number, need 2', 'error')
