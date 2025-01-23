@@ -18,7 +18,7 @@ def show_message(message, msg_type: str = ''):
     to dismiss the message.
     """
     root = tk.Tk()
-    root.title("WLEDLipSync Information")
+    root.title("WLEDInformation")
     bg_color = 'red' if msg_type == 'error' else '#0E7490'
     root.configure(bg=bg_color)  # Set the background color
     label = tk.Label(root, text=message, bg=bg_color, fg='white', justify=tk.LEFT, padx=5, pady=5, wraplength='360p')
