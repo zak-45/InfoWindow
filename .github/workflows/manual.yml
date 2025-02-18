@@ -135,7 +135,7 @@ jobs:
           if-no-files-found: warn
           overwrite: true
           include-hidden-files: true
-          path: 'build/info_window.app/Contents/MacOS/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
+          path: 'build/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
 
 
       - name: Create Release ${{github.event.inputs.mytag}} with Builds from Nuitka for Win/Linux
@@ -154,5 +154,5 @@ jobs:
           allowUpdates: true
           commit: main
           tag: ${{github.event.inputs.mytag}}
-          artifacts: 'build/info_window.app/Contents/MacOS/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
+          artifacts: 'build/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
 
