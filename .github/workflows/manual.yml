@@ -109,12 +109,13 @@ jobs:
           enable-plugins: tk-inter
           windows-console-mode: disable
           deployment: true
-          windows-icon-from-ico: assets/favicon.ico
-          macos-app-icon: assets/favicon.ico
           output-file: info_window-${{runner.os}}_${{ env.ARCHITECTURE }}
           include-data-files: |
             favicon.ico=favicon.ico
             favicon.png=favicon.png
+          windows-icon-from-ico: favicon.ico
+          macos-app-icon: favicon.ico
+          linux-icon: favicon.ico
 
       - name: Upload Artifacts Win/Linux
         if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-22.04'
