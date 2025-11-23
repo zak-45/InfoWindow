@@ -26,7 +26,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        os: [macos-13, macos-latest, ubuntu-22.04, windows-latest]
+        os: [macos-15-intel, macos-latest, ubuntu-latest, windows-latest]
     env:
       DEBUG_COMPILATION: yes
       COMP_VERSION: ${{github.event.inputs.mytag}}
@@ -53,7 +53,7 @@ jobs:
           echo "ARCHITECTURE=amd64" >> $GITHUB_ENV
 
       - name: Ubuntu specific
-        if: matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update       
           ARCHITECTURE=$(uname -m)
@@ -67,7 +67,7 @@ jobs:
           echo "ARCHITECTURE=$ARCHITECTURE" >> $GITHUB_ENV                  
 
       - name: MacOS specific Intel
-        if: matrix.os == 'macos-13'
+        if: matrix.os == 'macos-15-intel'
         run: |
           brew update
           ARCHITECTURE=$(uname -m)
@@ -76,7 +76,7 @@ jobs:
       - name: Setup Python x64
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # Version range or exact version of a Python version to use
+          python-version: '3.12' # Version range or exact version of a Python version to use
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
           cache: 'pip'
           cache-dependency-path: |
@@ -118,7 +118,7 @@ jobs:
           linux-icon: favicon.ico
 
       - name: Upload Artifacts Win/Linux
-        if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
           name: ${{runner.os}} ${{ env.ARCHITECTURE }} Build
@@ -128,7 +128,7 @@ jobs:
           path: 'build/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
 
       - name: Upload Artifacts MacOS
-        if: matrix.os == 'macos-13' || matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-15-intel' || matrix.os == 'macos-latest'
         uses: actions/upload-artifact@v4
         with:
           name: ${{runner.os}} ${{ env.ARCHITECTURE }} Build
@@ -139,7 +139,7 @@ jobs:
 
 
       - name: Create Release ${{github.event.inputs.mytag}} with Builds from Nuitka for Win/Linux
-        if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-22.04'
+        if: matrix.os == 'windows-latest' || matrix.os == 'ubuntu-latest'
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
@@ -148,7 +148,7 @@ jobs:
           artifacts: 'build/info_window-${{runner.os}}_${{ env.ARCHITECTURE }}**'
 
       - name: Create Release ${{github.event.inputs.mytag}} with Builds from Nuitka for MacOS
-        if: matrix.os == 'macos-13' || matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-15-intel' || matrix.os == 'macos-latest'
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
