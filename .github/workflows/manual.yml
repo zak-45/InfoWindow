@@ -109,6 +109,7 @@ jobs:
           enable-plugins: tk-inter
           windows-console-mode: disable
           deployment: true
+          mode: onefile
           output-file: info_window-${{runner.os}}_${{ env.ARCHITECTURE }}
           include-data-files: |
             favicon.ico=favicon.ico
